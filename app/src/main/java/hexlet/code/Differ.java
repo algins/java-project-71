@@ -1,7 +1,7 @@
 package hexlet.code;
 
 public class Differ {
-    public static String generate(String filePath1, String filePath2) {
+    public static String generate(String filepath1, String filepath2) {
         return "";
     }
 }
