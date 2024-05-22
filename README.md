@@ -4,7 +4,7 @@ Utility that compares two configuration files and shows a difference.
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/algins/java-project-71/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/algins/java-project-71/actions)
 
-[![Actions Status](https://github.com/algins/java-project-71/actions/workflows/main/badge.svg)](https://github.com/algins/java-project-71/actions)
+[![Actions Status](https://github.com/algins/java-project-71/actions/workflows/main.yml/badge.svg)](https://github.com/algins/java-project-71/actions)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/5eb26e504307b33620eb/maintainability)](https://codeclimate.com/github/algins/java-project-71/maintainability)
 
