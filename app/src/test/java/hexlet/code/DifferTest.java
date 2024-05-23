@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class DifferTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {"json"})
+    @ValueSource(strings = {"json", "yaml"})
     public void compareFiles(String type) throws Exception {
         var filepath1 = getFixturePath("file1." + type).toString();
         var filepath2 = getFixturePath("file2." + type).toString();

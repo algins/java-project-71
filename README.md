@@ -24,4 +24,5 @@ $ make install
 ```
 
 ### Demo:
-https://asciinema.org/a/jxPr8PgnaFi9qqyBTK1x0DPZE
+* [JSON file diff in plain format](https://asciinema.org/a/lR8MX9tDlaBMnfaoiHjCt33hN)
+* [YAML file diff in plain format](https://asciinema.org/a/N2aihh9v4NwLRvcm1Hj07aDze)

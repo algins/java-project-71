@@ -1,25 +1,24 @@
 package hexlet.code;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.TreeSet;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.io.FilenameUtils;
 
 public class Differ {
-    public static String generate(String filepath1, String filepath2, String format) throws Exception {
-        var path1 = Paths.get(filepath1).toAbsolutePath().normalize();
-        var path2 = Paths.get(filepath2).toAbsolutePath().normalize();
+    public static String generate(String filepath1, String filepath2, String format) throws IOException {
+        var map1 = Parser.parse(
+            readFile(filepath1),
+            FilenameUtils.getExtension(filepath1)
+        );
 
-        var content1 = Files.readString(path1);
-        var content2 = Files.readString(path2);
-
-        var mapper = new ObjectMapper();
-        Map<String, Object> map1 = mapper.readValue(content1, new TypeReference<Map<String, Object>>() { });
-        Map<String, Object> map2 = mapper.readValue(content2, new TypeReference<Map<String, Object>>() { });
+        var map2 = Parser.parse(
+            readFile(filepath2),
+            FilenameUtils.getExtension(filepath2)
+        );
 
         var keys = new TreeSet<>();
         keys.addAll(map1.keySet());
@@ -47,5 +46,10 @@ public class Differ {
         result.add("}");
 
         return String.join("\n", result);
+    }
+
+    private static String readFile(String filepath) throws IOException {
+        var path = Paths.get(filepath).toAbsolutePath().normalize();
+        return Files.readString(path);
     }
 }
