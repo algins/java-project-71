@@ -9,21 +9,22 @@ import java.nio.file.Paths;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import hexlet.code.formatters.Formatter;
+
 public class DifferTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {"json", "yaml"})
+    @ValueSource(strings = {Parser.TYPE_JSON, Parser.TYPE_JSON})
     public void compareFiles(String type) throws Exception {
         var filepath1 = getFixturePath("file1." + type).toString();
         var filepath2 = getFixturePath("file2." + type).toString();
-        var format = "plain";
-        var actual = Differ.generate(filepath1, filepath2, format);
-        var expected = readFile(format);
+        var actual = Differ.generate(filepath1, filepath2);
+        var expected = readFile(Formatter.FORMAT_STYLISH);
         assertEquals(expected, actual);
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"plain"})
+    @ValueSource(strings = {Formatter.FORMAT_STYLISH})
     public void generateDiffInFormat(String format) throws Exception {
         var filepath1 = getFixturePath("file1.json").toString();
         var filepath2 = getFixturePath("file2.json").toString();

@@ -8,13 +8,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
 public class Parser {
+    public static final String TYPE_JSON = "json";
+    public static final String TYPE_YAML = "yaml";
+    public static final String TYPE_YML = "yml";
+
     public static Map<String, Object> parse(String text, String type) throws IOException {
         switch (type.toLowerCase()) {
-            case "json":
+            case TYPE_JSON:
                 var objectMapper = new ObjectMapper();
                 return objectMapper.readValue(text, new TypeReference<Map<String, Object>>() { });
-            case "yaml":
-            case "yml":
+            case TYPE_YAML:
+            case TYPE_YML:
                 var yamlMapper = new YAMLMapper();
                 return yamlMapper.readValue(text, new TypeReference<Map<String, Object>>() { });
             default:

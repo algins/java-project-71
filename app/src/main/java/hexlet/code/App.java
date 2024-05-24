@@ -2,6 +2,7 @@ package hexlet.code;
 
 import java.util.concurrent.Callable;
 
+import hexlet.code.formatters.Formatter;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -32,8 +33,8 @@ public class App implements Callable<Integer> {
     @Option(
         names = {"-f", "--format"},
         paramLabel = "format",
-        description = "output format [default: stylish]",
-        defaultValue = "stylish"
+        description = "output format [default: " + Formatter.FORMAT_STYLISH + "]",
+        defaultValue = Formatter.FORMAT_STYLISH
     )
     private String format;
 
