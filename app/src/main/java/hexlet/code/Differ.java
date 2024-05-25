@@ -36,10 +36,9 @@ public class Differ {
         var diffTree = new DiffTree();
         var keys = getUniqueKeys(map1, map2);
 
-        for (var key : keys) {
-            var diffNode = createDiffNode(key, map1, map2);
-            diffTree.addNode(diffNode);
-        }
+        keys.stream()
+            .map(key -> createDiffNode(key, map1, map2))
+            .forEach(diffTree::addNode);
 
         return diffTree;
     }

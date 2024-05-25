@@ -1,7 +1,7 @@
 package hexlet.code.formatters;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import hexlet.code.DiffNode;
 import hexlet.code.DiffTree;
@@ -9,15 +9,11 @@ import hexlet.code.utils.StringUtils;
 
 public class StylishFormatter {
     public static String format(DiffTree diffTree) throws IOException {
-        var parts = new ArrayList<String>();
-        parts.add("{");
+        var formattedNodes = diffTree.getNodes().stream()
+            .map(StylishFormatter::formatNode)
+            .collect(Collectors.joining("\n"));
 
-        for (DiffNode node : diffTree.getNodes()) {
-            parts.add(formatNode(node));
-        }
-
-        parts.add("}");
-        return String.join("\n", parts);
+        return "{\n" + formattedNodes + "\n}";
     }
 
     private static String formatNode(DiffNode node) {
