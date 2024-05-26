@@ -28,7 +28,8 @@ public class StylishFormatter {
             case DiffItem.TYPE_REMOVED:
                 return StringUtils.indent("- " + key + ": " + value1);
             case DiffItem.TYPE_UNCHANGED:
-                return StringUtils.indent(key + ": " + value1, 4);
+                var spacesCount = 4;
+                return StringUtils.indent(key + ": " + value1, spacesCount);
             case DiffItem.TYPE_CHANGED:
                 return StringUtils.indent("- " + key + ": " + value1 + "\n  + " + key + ": " + value2);
             default:

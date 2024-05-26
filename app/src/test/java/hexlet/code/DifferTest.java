@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import hexlet.code.formatters.Formatter;
 
-public class DifferTest {
+public final class DifferTest {
 
     @ParameterizedTest
     @ValueSource(strings = {Parser.TYPE_JSON, Parser.TYPE_JSON})
