@@ -2,7 +2,7 @@ package hexlet.code.utils;
 
 public class StringUtils {
     public static String indent(String str) {
-        var spacesCount = 2;
+        final var spacesCount = 2;
         return indent(str, spacesCount);
     }
 
