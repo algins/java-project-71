@@ -28,6 +28,6 @@ lint:
 	make -C app lint
 
 check-deps:
-	make -C app update-deps
+	make -C app check-deps
 
 build-run: build run
