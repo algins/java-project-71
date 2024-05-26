@@ -27,3 +27,4 @@ $ make install
 * [JSON file diff in stylish format](https://asciinema.org/a/HnDTBtDgh7aqFmGoTieLKO3CR)
 * [YAML file diff in stylish format](https://asciinema.org/a/vwdaxejVTxCdOxK53ov8pKFYP)
 * [JSON file diff in plain format](https://asciinema.org/a/k9bGuoGVUMcUkYD6VIukkrlym)
+* [JSON file diff in JSON format](https://asciinema.org/a/4dZ0cGIqtHoHQFQDIsPsdiCN3)
