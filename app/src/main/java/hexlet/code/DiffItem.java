@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class DiffNode {
+public class DiffItem {
     public static final String TYPE_ADDED = "added";
     public static final String TYPE_REMOVED = "removed";
     public static final String TYPE_CHANGED = "changed";
@@ -16,7 +16,7 @@ public class DiffNode {
     private Object value1;
     private Object value2;
 
-    public DiffNode(String type, String key, Object value1) {
+    public DiffItem(String type, String key, Object value1) {
         this.type = type;
         this.key = key;
         this.value1 = value1;

@@ -28,38 +28,32 @@ public class Differ {
             FilenameUtils.getExtension(filepath2)
         );
 
-        var diffTree = createDiffTree(map1, map2);
-        return Formatter.format(diffTree, format);
-    }
-
-    private static DiffTree createDiffTree(Map<String, Object> map1, Map<String, Object> map2) {
-        var diffTree = new DiffTree();
         var keys = getUniqueKeys(map1, map2);
 
-        keys.stream()
-            .map(key -> createDiffNode(key, map1, map2))
-            .forEach(diffTree::addNode);
+        var diff = keys.stream()
+            .map(key -> generateDiffItem(key, map1, map2))
+            .toList();
 
-        return diffTree;
+        return Formatter.format(diff, format);
     }
 
-    private static DiffNode createDiffNode(String key, Map<String, Object> map1, Map<String, Object> map2) {
+    private static DiffItem generateDiffItem(String key, Map<String, Object> map1, Map<String, Object> map2) {
         var value1 = map1.get(key);
         var value2 = map2.get(key);
 
         if (!map1.containsKey(key)) {
-            return new DiffNode(DiffNode.TYPE_ADDED, key, value2);
+            return new DiffItem(DiffItem.TYPE_ADDED, key, value2);
         }
 
         if (!map2.containsKey(key)) {
-            return new DiffNode(DiffNode.TYPE_REMOVED, key, value1);
+            return new DiffItem(DiffItem.TYPE_REMOVED, key, value1);
         }
 
         if (Objects.equals(value1, value2)) {
-            return new DiffNode(DiffNode.TYPE_UNCHANGED, key, value1);
+            return new DiffItem(DiffItem.TYPE_UNCHANGED, key, value1);
         }
 
-        return new DiffNode(DiffNode.TYPE_CHANGED, key, value1, value2);
+        return new DiffItem(DiffItem.TYPE_CHANGED, key, value1, value2);
     }
 
     private static Set<String> getUniqueKeys(Map<String, Object> map1, Map<String, Object> map2) {

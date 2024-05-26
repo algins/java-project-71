@@ -5,29 +5,28 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import hexlet.code.DiffNode;
-import hexlet.code.DiffTree;
+import hexlet.code.DiffItem;
 
 public class PlainFormatter {
-    public static String format(DiffTree diffTree) throws IOException {
-        return diffTree.getNodes().stream()
-            .filter(node -> !node.getType().equals(DiffNode.TYPE_UNCHANGED))
-            .map(PlainFormatter::formatNode)
+    public static String format(List<DiffItem> diff) throws IOException {
+        return diff.stream()
+            .filter(item -> !item.getType().equals(DiffItem.TYPE_UNCHANGED))
+            .map(PlainFormatter::formatItem)
             .collect(Collectors.joining("\n"));
     }
 
-    private static String formatNode(DiffNode node) {
-        var type = node.getType();
-        var key = node.getKey();
-        var value1 = node.getValue1();
-        var value2 = node.getValue2();
+    private static String formatItem(DiffItem item) {
+        var type = item.getType();
+        var key = item.getKey();
+        var value1 = item.getValue1();
+        var value2 = item.getValue2();
 
         switch (type) {
-            case DiffNode.TYPE_ADDED:
+            case DiffItem.TYPE_ADDED:
                 return "Property '" + key + "' was added with value: " + formatValue(value1);
-            case DiffNode.TYPE_REMOVED:
+            case DiffItem.TYPE_REMOVED:
                 return "Property '" + key + "' was removed";
-            case DiffNode.TYPE_CHANGED:
+            case DiffItem.TYPE_CHANGED:
                 return "Property '" + key + "' was updated. From " + formatValue(value1) + " to " + formatValue(value2);
             default:
                 throw new IllegalArgumentException("Unsupported type: " + type);

@@ -24,7 +24,7 @@ public class DifferTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {Formatter.FORMAT_PLAIN, Formatter.FORMAT_STYLISH})
+    @ValueSource(strings = {Formatter.FORMAT_JSON, Formatter.FORMAT_PLAIN, Formatter.FORMAT_STYLISH})
     public void generateDiffInFormat(String format) throws Exception {
         var filepath1 = getFixturePath("file1.json").toString();
         var filepath2 = getFixturePath("file2.json").toString();
